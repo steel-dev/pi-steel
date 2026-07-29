@@ -27,11 +27,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/steel-dev/pi.git"
+    "url": "git+https://github.com/steel-dev/pi-steel.git"
   },
   "homepage": "https://steel.dev",
   "bugs": {
-    "url": "https://github.com/steel-dev/pi/issues"
+    "url": "https://github.com/steel-dev/pi-steel/issues"
   },
   "publishConfig": {
     "access": "public"
