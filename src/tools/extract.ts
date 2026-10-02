@@ -1,5 +1,6 @@
 import type { ExtensionContext, ToolDefinition } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
+import { READ_ONLY_ANNOTATIONS } from "./tool-annotations.js";
 import { sessionDetails as baseSessionDetails, type SteelClient } from "../steel-client.js";
 import {
   emitProgress,
@@ -533,6 +534,7 @@ async function extractWithBrowser(
 export function extractTool(client: SteelClient): ToolDefinition<any, any> {
   return {
     name: "steel_extract",
+    annotations: READ_ONLY_ANNOTATIONS,
     label: "Extract",
     description: "Extract structured values from page content using a JSON Schema contract",
     parameters: Type.Object({

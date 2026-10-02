@@ -1,5 +1,6 @@
 import type { ExtensionContext, ToolDefinition } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
+import { READ_ONLY_ANNOTATIONS, SITE_ACTION_ANNOTATIONS } from "./tool-annotations.js";
 import { sessionDetails, type SteelClient } from "../steel-client.js";
 import {
   emitProgress,
@@ -36,6 +37,7 @@ function isTimeoutError(error: unknown): boolean {
 export function goBackTool(client: SteelClient): ToolDefinition<any, any> {
   return {
     name: "steel_go_back",
+    annotations: SITE_ACTION_ANNOTATIONS,
     label: "Go Back",
     description: "Navigate back in browser history",
     parameters: Type.Object({}),
@@ -117,6 +119,7 @@ export function goBackTool(client: SteelClient): ToolDefinition<any, any> {
 export function getUrlTool(client: SteelClient): ToolDefinition<any, any> {
   return {
     name: "steel_get_url",
+    annotations: READ_ONLY_ANNOTATIONS,
     label: "Get URL",
     description: "Get current page URL",
     parameters: Type.Object({}),
@@ -155,6 +158,7 @@ export function getUrlTool(client: SteelClient): ToolDefinition<any, any> {
 export function getTitleTool(client: SteelClient): ToolDefinition<any, any> {
   return {
     name: "steel_get_title",
+    annotations: READ_ONLY_ANNOTATIONS,
     label: "Get Title",
     description: "Get current page title",
     parameters: Type.Object({}),

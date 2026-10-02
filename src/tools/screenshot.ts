@@ -1,6 +1,7 @@
 import { promises as fs } from "node:fs";
 import type { ExtensionContext, ToolDefinition } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
+import { READ_ONLY_ANNOTATIONS } from "./tool-annotations.js";
 import {
   assertArtifact,
   createArtifactPath,
@@ -175,6 +176,7 @@ async function writeArtifact(targetPath: string, sessionResult: unknown): Promis
 export function screenshotTool(client: SteelClient): ToolDefinition<any, any> {
   return {
     name: "steel_screenshot",
+    annotations: READ_ONLY_ANNOTATIONS,
     label: "Screenshot",
     description:
       "Capture the current page or a target element selected by CSS, ARIA role/name, or visible text.",

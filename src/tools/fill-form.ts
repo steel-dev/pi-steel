@@ -1,5 +1,6 @@
 import type { ExtensionContext, ToolDefinition } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
+import { SITE_ACTION_ANNOTATIONS } from "./tool-annotations.js";
 import { sessionDetails, type SteelClient } from "../steel-client.js";
 import { runWithCaptchaRecovery, type CaptchaRecoverySummary } from "./captcha-guard.js";
 import {
@@ -117,6 +118,7 @@ function asArray(input: unknown): FieldInput[] {
 export function fillFormTool(client: SteelClient): ToolDefinition<any, any> {
   return {
     name: "steel_fill_form",
+    annotations: SITE_ACTION_ANNOTATIONS,
     label: "Fill Form",
     description:
       "Fill multiple fields by CSS selector, ARIA role/name, or visible text in one call.",

@@ -1,5 +1,6 @@
 import type { ExtensionContext, ToolDefinition } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
+import { SITE_ACTION_ANNOTATIONS } from "./tool-annotations.js";
 import { sessionDetails, type SteelClient } from "../steel-client.js";
 import {
   emitProgress,
@@ -203,6 +204,7 @@ function shouldTryNoProxyFallback(client: SteelClient): boolean {
 export function navigateTool(client: SteelClient): ToolDefinition<any, any> {
   return {
     name: "steel_navigate",
+    annotations: SITE_ACTION_ANNOTATIONS,
     label: "Navigate",
     description: "Navigate to a URL in the browser",
     parameters: Type.Object({
