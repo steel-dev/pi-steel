@@ -1,5 +1,6 @@
 import type { ExtensionContext, ToolDefinition } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
+import { READ_ONLY_ANNOTATIONS } from "./tool-annotations.js";
 import { sessionDetails as baseSessionDetails, type SteelClient } from "../steel-client.js";
 import {
   emitProgress,
@@ -92,6 +93,7 @@ async function readSessionUrl(session: SessionLike): Promise<string> {
 export function waitTool(client: SteelClient): ToolDefinition<any, any> {
   return {
     name: "steel_wait",
+    annotations: READ_ONLY_ANNOTATIONS,
     label: "Wait",
     description:
       "Wait for an element by CSS selector, ARIA role/name, or visible text.",

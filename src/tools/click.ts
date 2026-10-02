@@ -1,5 +1,6 @@
 import type { ExtensionContext, ToolDefinition } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
+import { SITE_ACTION_ANNOTATIONS } from "./tool-annotations.js";
 import { sessionDetails, type SteelClient } from "../steel-client.js";
 import { runWithCaptchaRecovery, type CaptchaRecoverySummary } from "./captcha-guard.js";
 import {
@@ -73,6 +74,7 @@ function normalizeTimeout(timeoutMs?: number): number {
 export function clickTool(client: SteelClient): ToolDefinition<any, any> {
   return {
     name: "steel_click",
+    annotations: SITE_ACTION_ANNOTATIONS,
     label: "Click",
     description:
       "Click an element by CSS selector, ARIA role/name, or visible text. Prefer role/name after steel_snapshot.",

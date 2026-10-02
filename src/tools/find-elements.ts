@@ -1,5 +1,6 @@
 import type { ExtensionContext, ToolDefinition } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
+import { READ_ONLY_ANNOTATIONS } from "./tool-annotations.js";
 import { sessionDetails as baseSessionDetails, type SteelClient } from "../steel-client.js";
 import {
   emitProgress,
@@ -226,6 +227,7 @@ async function discoverElements(
 export function findElementsTool(client: SteelClient): ToolDefinition<any, any> {
   return {
     name: "steel_find_elements",
+    annotations: READ_ONLY_ANNOTATIONS,
     label: "Find Elements",
     description: "Discover likely interactive elements and selector candidates",
     parameters: Type.Object({

@@ -1,6 +1,7 @@
 import { promises as fs } from "node:fs";
 import type { ExtensionContext, ToolDefinition } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
+import { READ_ONLY_ANNOTATIONS } from "./tool-annotations.js";
 import { assertArtifact, createArtifactPath } from "../artifacts.js";
 import { sessionDetails as baseSessionDetails, type SteelClient } from "../steel-client.js";
 import {
@@ -333,6 +334,7 @@ async function scrapeContent(
 export function scrapeTool(client: SteelClient): ToolDefinition<any, any> {
   return {
     name: "steel_scrape",
+    annotations: READ_ONLY_ANNOTATIONS,
     label: "Scrape",
     description: "Extract readable current page content. Use text by default for answering questions, markdown when structure matters, and html only for DOM/debugging cases.",
     parameters: Type.Object({

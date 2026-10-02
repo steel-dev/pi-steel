@@ -1,5 +1,6 @@
 import type { ExtensionContext, ToolDefinition } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
+import { READ_ONLY_ANNOTATIONS } from "./tool-annotations.js";
 import { sessionDetails as baseSessionDetails, type SteelClient } from "../steel-client.js";
 import {
   blankPageError,
@@ -45,6 +46,7 @@ function truncateSnapshot(snapshot: string, maxChars: number) {
 export function snapshotTool(client: SteelClient): ToolDefinition<any, any> {
   return {
     name: "steel_snapshot",
+    annotations: READ_ONLY_ANNOTATIONS,
     label: "Accessibility Snapshot",
     description:
       "Read the current page as an ARIA accessibility tree. Use this before interacting so targets can be selected by role and accessible name.",

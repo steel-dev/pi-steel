@@ -28,6 +28,7 @@ type MockToolResult = {
 
 type MockTool = {
   name: string;
+  annotations?: object;
   parameters?: {
     type?: string;
     properties?: Record<string, unknown>;
@@ -216,6 +217,30 @@ describe("Tool registration contracts", () => {
     steel_release_session: [],
   };
 
+  const readOnly = { readOnlyHint: true, openWorldHint: true };
+  const pageAction = { readOnlyHint: false, destructiveHint: false, openWorldHint: true };
+  const siteAction = { readOnlyHint: false, destructiveHint: true, openWorldHint: true };
+  const expectedAnnotations: Record<string, object> = {
+    steel_navigate: pageAction,
+    steel_snapshot: readOnly,
+    steel_scrape: readOnly,
+    steel_screenshot: readOnly,
+    steel_pdf: readOnly,
+    steel_click: siteAction,
+    steel_computer: siteAction,
+    steel_find_elements: readOnly,
+    steel_type: siteAction,
+    steel_fill_form: siteAction,
+    steel_wait: readOnly,
+    steel_extract: readOnly,
+    steel_scroll: pageAction,
+    steel_go_back: pageAction,
+    steel_get_url: readOnly,
+    steel_get_title: readOnly,
+    steel_pin_session: { readOnlyHint: false, destructiveHint: false, openWorldHint: false },
+    steel_release_session: { readOnlyHint: false, destructiveHint: true, openWorldHint: false },
+  };
+
   it("registers all tools in expected order", async () => {
     const tools = withEnv("STEEL_API_KEY", "test-key", () => {
       const registeredTools: MockTool[] = [];
@@ -248,6 +273,7 @@ describe("Tool registration contracts", () => {
         assert.ok(Object.prototype.hasOwnProperty.call(properties, key), `${tool.name} missing required schema field ${key}`);
       }
       assert.ok(tool.execute instanceof Function);
+      assert.deepEqual(tool.annotations, expectedAnnotations[tool.name], `${tool.name} annotations changed`);
     }
   });
 

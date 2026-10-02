@@ -1,5 +1,6 @@
 import type { ExtensionContext, ToolDefinition } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
+import { READ_ONLY_ANNOTATIONS } from "./tool-annotations.js";
 import {
   assertArtifact,
   createArtifactPath,
@@ -75,6 +76,7 @@ async function readSessionUrl(session: SessionLike): Promise<string> {
 export function pdfTool(client: SteelClient): ToolDefinition<any, any> {
   return {
     name: "steel_pdf",
+    annotations: READ_ONLY_ANNOTATIONS,
     label: "PDF",
     description: "Capture the current page as a PDF artifact",
     parameters: Type.Object({

@@ -68,6 +68,12 @@ Interaction tools accept exactly one target method:
 
 Role/name targeting is preferred. CSS remains available for pages without useful accessibility metadata.
 
+Each tool declares Pi tool annotations, which permission extensions can use to decide which calls need approval:
+
+- Read-only: the inspection, artifact, and structured data tools, plus `steel_wait`, `steel_get_url`, and `steel_get_title`. Saved artifact files do not change the website.
+- Not destructive: `steel_navigate`, `steel_go_back`, `steel_scroll`, and `steel_pin_session`.
+- Destructive: `steel_click`, `steel_type`, `steel_fill_form`, and `steel_computer`, because they send input that can submit forms or delete data on the website. `steel_release_session` is also destructive, because it ends the browser session.
+
 ## Sessions
 
 The default mode is `session`: one Steel browser remains available across Pi prompts until Pi switches sessions, shuts down, or calls `steel_release_session`.

@@ -1,5 +1,6 @@
 import type { ExtensionContext, ToolDefinition } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
+import { PAGE_ACTION_ANNOTATIONS } from "./tool-annotations.js";
 import { sessionDetails, type SteelClient } from "../steel-client.js";
 import {
   emitProgress,
@@ -225,6 +226,7 @@ async function performScroll(
 export function scrollTool(client: SteelClient): ToolDefinition<any, any> {
   return {
     name: "steel_scroll",
+    annotations: PAGE_ACTION_ANNOTATIONS,
     label: "Scroll",
     description: "Scroll the current page or a visible scroll container up or down",
     parameters: Type.Object({

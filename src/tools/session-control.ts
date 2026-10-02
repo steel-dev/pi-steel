@@ -36,6 +36,7 @@ export function pinSessionTool(
 ): ToolDefinition<any, any> {
   return {
     name: "steel_pin_session",
+    annotations: { readOnlyHint: false, destructiveHint: false, openWorldHint: false },
     label: "Pin Session",
     description: "Keep the current Steel browser session alive across prompts until explicitly released",
     parameters: Type.Object({}),
@@ -73,6 +74,7 @@ export function releaseSessionTool(
 ): ToolDefinition<any, any> {
   return {
     name: "steel_release_session",
+    annotations: { readOnlyHint: false, destructiveHint: true, openWorldHint: false },
     label: "Release Session",
     description: "Close the current Steel browser session immediately and restore the default runtime session mode",
     parameters: Type.Object({}),

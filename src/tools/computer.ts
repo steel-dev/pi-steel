@@ -1,5 +1,6 @@
 import type { ExtensionContext, ToolDefinition } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
+import { SITE_ACTION_ANNOTATIONS } from "./tool-annotations.js";
 import type Steel from "steel-sdk";
 import {
   assertArtifact,
@@ -282,6 +283,7 @@ async function persistScreenshotArtifact(base64Image: string) {
 export function computerTool(client: SteelClient): ToolDefinition<any, any> {
   return {
     name: "steel_computer",
+    annotations: SITE_ACTION_ANNOTATIONS,
     label: "Computer Action",
     description: "Execute low-level Steel computer actions (mouse, keyboard, scroll, screenshot)",
     parameters: Type.Object({
