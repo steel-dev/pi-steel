@@ -22,7 +22,7 @@ it(
       });
       assert.equal(await session.title(), "Example Domain");
       const snapshot = await session.page.locator("body").ariaSnapshot();
-      assert.match(snapshot, /Example Domain/);
+      assert.match(snapshot, /link "Learn more"/);
       assert.ok(session.id);
     } finally {
       await client.closeAllSessions();
