@@ -221,7 +221,7 @@ describe("Tool registration contracts", () => {
   const pageAction = { readOnlyHint: false, destructiveHint: false, openWorldHint: true };
   const siteAction = { readOnlyHint: false, destructiveHint: true, openWorldHint: true };
   const expectedAnnotations: Record<string, object> = {
-    steel_navigate: pageAction,
+    steel_navigate: siteAction,
     steel_snapshot: readOnly,
     steel_scrape: readOnly,
     steel_screenshot: readOnly,
@@ -234,7 +234,7 @@ describe("Tool registration contracts", () => {
     steel_wait: readOnly,
     steel_extract: readOnly,
     steel_scroll: pageAction,
-    steel_go_back: pageAction,
+    steel_go_back: siteAction,
     steel_get_url: readOnly,
     steel_get_title: readOnly,
     steel_pin_session: { readOnlyHint: false, destructiveHint: false, openWorldHint: false },

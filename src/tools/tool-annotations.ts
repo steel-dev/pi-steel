@@ -5,14 +5,14 @@ import type { ToolAnnotations } from "@earendil-works/pi-coding-agent";
 /** Reads the page. Saved artifact files are output only and do not change the website. */
 export const READ_ONLY_ANNOTATIONS: ToolAnnotations = { readOnlyHint: true, openWorldHint: true };
 
-/** Changes the browser view, but does not submit input to the website. */
+/** Scrolls the browser view without submitting input or navigating to another page. */
 export const PAGE_ACTION_ANNOTATIONS: ToolAnnotations = {
   readOnlyHint: false,
   destructiveHint: false,
   openWorldHint: true,
 };
 
-/** Sends input to the website, which can submit forms or delete data. */
+/** May change website state through input or navigation to state-changing URLs. */
 export const SITE_ACTION_ANNOTATIONS: ToolAnnotations = {
   readOnlyHint: false,
   destructiveHint: true,
